@@ -18,15 +18,21 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 enable_testing()
 
-add_executable(
-  atm_test
-  test_code.cpp
-)
-target_link_libraries(
-  atm_test
-  GTest::gtest_main
-  bear_atm
-)
+# Add test executables
+add_executable(test_account test_account.cpp)
+add_executable(test_card test_card.cpp)
+add_executable(test_bank test_bank.cpp)
+add_executable(test_atm test_atm.cpp)
 
+# Link GoogleTest and the bear_atm library to each test executable
+target_link_libraries(test_account GTest::gtest_main bear_atm)
+target_link_libraries(test_card GTest::gtest_main bear_atm)
+target_link_libraries(test_bank GTest::gtest_main bear_atm)
+target_link_libraries(test_atm GTest::gtest_main bear_atm)
+
+# Discover tests
 include(GoogleTest)
-gtest_discover_tests(atm_test)
+gtest_discover_tests(test_account)
+gtest_discover_tests(test_card)
+gtest_discover_tests(test_bank)
+gtest_discover_tests(test_atm)
