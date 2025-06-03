@@ -14,7 +14,7 @@ public:
 
     inline std::string bank_name() const { return bank_name_; };
     inline std::string user_name() const { return user_name_; };
-    inline std::string account_number() const { return std::to_string(account_number_); }
+    inline std::string account_number() const { return account_number_; }
 
     inline uint64_t balance() const { return balance_; }
 
@@ -25,7 +25,7 @@ public:
 private:
     const std::string bank_name_;
     const std::string user_name_;
-    const uint64_t account_number_;
+    const std::string account_number_;
     uint64_t balance_;
 };
 }  // namespace BearATM
