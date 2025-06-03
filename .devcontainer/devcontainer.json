@@ -5,7 +5,7 @@
 	"build": {
 		"dockerfile": "../Dockerfile",
 		"args": {
-			"USER_NAME" : "${localEnv:USER}"
+			"USER_NAME": "${localEnv:USER}"
 		}
 	},
 	"name": "dev-bear-atm",
@@ -13,13 +13,12 @@
 		"source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind",
 		"source=/home/${localEnv:USER}/.ssh/,target=/home/.ssh/,type=bind"
 	],
-	
-	"workspaceFolder": "/home/bear-atm",
+	"workspaceFolder": "/home/${localEnv:USER}/bear-atm",
 	"workspaceMount": "source=${localWorkspaceFolder},target=/home/bear-atm,type=bind",
-
 	"runArgs": [
-		"--name", "dev-bear-atm",
-		"--cap-add=SYS_PTRACE",	
+		"--name",
+		"dev-bear-atm",
+		"--cap-add=SYS_PTRACE",
 		"--net=host",
 		"--privileged",
 		"--security-opt=seccomp=unconfined"
