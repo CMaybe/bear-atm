@@ -1,0 +1,6 @@
+@PACKAGE_INIT@
+set_and_check(bear_atm_INCLUDE_DIRS "@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_INCLUDEDIR@")
+set_and_check(bear_atm_LIB_DIRS "@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_LIBDIR@")
+
+set(bear_atm_FOUND TRUE) 
+include("${bear_atm_LIB_DIRS}/cmake/bear_atm/bear_atm-targets.cmake")

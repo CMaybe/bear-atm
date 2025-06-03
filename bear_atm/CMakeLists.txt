@@ -14,7 +14,6 @@ set(INSTALL_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
 # Build options
 option(${PROJECT_NAME}_BUILD_TEST "Build unit test" ${PROJECT_IS_TOP_LEVEL})
 
-
 add_library(${PROJECT_NAME} SHARED)
 target_include_directories(
 	${PROJECT_NAME} PRIVATE
@@ -30,7 +29,7 @@ target_sources(
 )
 
 # Testing
-if("${PROJECT_NAME}_BUILD_TEST" AND "${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
+if(${PROJECT_NAME}_BUILD_TEST AND "${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
 	message(STATUS "Building tests for ${PROJECT_NAME}")
 	add_subdirectory(test)
 endif()
