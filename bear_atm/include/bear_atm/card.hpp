@@ -21,6 +21,8 @@ public:
     bool removeAccount(const std::string &account_number);
     std::shared_ptr<Account> getAccount(const std::string &account_number) const;
 
+    bool operator==(const Card &other) const;
+
 private:
     std::string bank_name_;
     std::string user_name_;

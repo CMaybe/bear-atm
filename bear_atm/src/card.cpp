@@ -21,4 +21,8 @@ std::shared_ptr<Account> Card::getAccount(const std::string &account_number) con
     }
     return nullptr;
 }
+
+bool Card::operator==(const Card &other) const {
+    return bank_name_ == other.bank_name_ && user_name_ == other.user_name_ && pin_number_ == other.pin_number_;
+}
 }  // namespace BearATM
