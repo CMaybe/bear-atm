@@ -13,9 +13,8 @@ class Bank {
 public:
     Bank() = default;
     explicit Bank(const std::string& name);
-    bool makeCard(const std::string& name, const int& pin);
-    bool addAccount(const std::string& user_name, const std::string& account_number, uint64_t balance);
-    bool removeAccount(const std::string& user_name, const std::string& account_number);
+    bool makeCard(const std::string& name, const std::string& pin);
+    bool verifyPin(const std::string& pin) const;
     inline std::string name() const { return name_; }
 
 private:
@@ -24,4 +23,4 @@ private:
 };
 }  // namespace BearATM
 
-#endif  // BANK_HPP
+#endif  // BEAR_ATM_BANK_HPP
