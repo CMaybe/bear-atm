@@ -1,0 +1,49 @@
+name: Testing
+
+on:
+  push:
+    branches: ["develop", "feature/ci"]
+    paths: 
+      - "bear_atm/**"
+      - ".github/workflows/ci.yaml"
+  pull_request:
+    branches: ["main", "develop"]
+    paths: 
+      - "bear_atm/**"
+      - ".github/workflows/ci.yaml"
+
+env:
+  BUILD_TYPE: Debug
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-22.04]
+    container:
+      image: ghcr.io/cmaybe/dev-bear-atm:latest
+      options: --user root
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
+
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Configure
+      run: |
+         cmake -S ./bear_atm -Bbuild -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+         
+    - name: Build
+      run: |
+        cmake --build build --config ${{env.BUILD_TYPE}}
+
+    - name: Test
+      run: |
+        cd build/test
+        ctest -C Debug --output-on-failure --verbose

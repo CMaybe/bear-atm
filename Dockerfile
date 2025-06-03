@@ -12,19 +12,29 @@ RUN echo 'Etc/UTC' > /etc/timezone \
     && ln -s /usr/share/zoneinfo/Etc/UTC /etc/localtime \
     && apt-get update \
     && apt-get -y -q --no-install-recommends install \
-        tzdata \
+    tzdata \
     && apt-get clean
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     apt-utils \
     bash-completion \
-    cmake \
-	clang-format \
+    build-essential \
+    clang-format \
     g++ \
     git \
     sudo \
+    wget \
     && rm -rf /var/lib/apt/lists/*
+
+# Install CMake 3.27.4
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.4/cmake-3.27.4-linux-x86_64.tar.gz && \
+    tar -xzvf cmake-3.27.4-linux-x86_64.tar.gz && \
+    cd cmake-3.27.4-linux-x86_64 && \
+    rm -rf /usr/local/man && \
+    cp -r * /usr/local/ && \
+    cd .. && \
+    rm -rf cmake-3.27.4-linux-x86_64 cmake-3.27.4-linux-x86_64.tar.gz
 
 # Add user info
 ARG USER_UID=1000
