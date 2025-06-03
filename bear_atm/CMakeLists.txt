@@ -11,6 +11,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic")
 set(INSTALL_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
 
+# Build options
+option(${PROJECT_NAME}_BUILD_TEST "Build unit test" ${PROJECT_IS_TOP_LEVEL})
+
 
 add_library(${PROJECT_NAME} SHARED)
 target_include_directories(
@@ -20,6 +23,12 @@ target_include_directories(
 target_sources(
     ${PROJECT_NAME} PRIVATE
         src/account.cpp
+		src/bank.cpp
+		src/card.cpp
 )
 
-
+# Testing
+if(${PROJECT_NAME}_BUILD_TEST AND ${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+	message(STATUS "Building tests for ${PROJECT_NAME}")
+	add_subdirectory(test)
+endif()
