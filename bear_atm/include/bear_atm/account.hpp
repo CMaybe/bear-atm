@@ -10,8 +10,7 @@ public:
     explicit Account(const std::string& bank_name,
                      const std::string& user_name,
                      const std::string& account_number,
-                     uint64_t balance = 0)
-        : bank_name_(bank_name), user_name_(user_name), account_number_(std::stoll(account_number)), balance_(balance){};
+                     uint64_t balance = 0);
 
     inline std::string bank_name() const { return bank_name_; };
     inline std::string user_name() const { return user_name_; };
@@ -21,7 +20,6 @@ public:
 
     bool deposit(const uint64_t& dollars);
     bool withdraw(const uint64_t& dollars);
-
     bool operator==(const Account& other) const;
 
 private:
