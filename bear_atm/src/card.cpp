@@ -2,7 +2,7 @@
 
 namespace BearATM {
 Card::Card(const std::string &bank_name, const std::string &user_name, const std::string &pin_number)
-    : bank_name_(bank_name), user_name_(user_name), pin_number_(std::stoull(pin_number)) {}
+    : bank_name_(bank_name), user_name_(user_name), pin_number_(pin_number) {}
 
 bool Card::addAccount(const std::shared_ptr<Account> &account) {
     if (accounts_.find(account->account_number()) != accounts_.end()) {
@@ -20,5 +20,9 @@ std::shared_ptr<Account> Card::getAccount(const std::string &account_number) con
         return it->second;
     }
     return nullptr;
+}
+
+bool Card::operator==(const Card &other) const {
+    return bank_name_ == other.bank_name_ && user_name_ == other.user_name_ && pin_number_ == other.pin_number_;
 }
 }  // namespace BearATM

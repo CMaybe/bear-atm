@@ -10,21 +10,23 @@
 namespace BearATM {
 class Card {
 public:
-    Card() = default;
+    Card() = delete;
     explicit Card(const std::string &bank_name, const std::string &user_name, const std::string &pin_number);
 
     inline std::string bank_name() const { return bank_name_; };
     inline std::string user_name() const { return user_name_; };
-    inline std::string pin_number() const { return std::to_string(pin_number_); };
+    inline std::string pin_number() const { return pin_number_; };
 
     bool addAccount(const std::shared_ptr<Account> &account);
     bool removeAccount(const std::string &account_number);
     std::shared_ptr<Account> getAccount(const std::string &account_number) const;
 
+    bool operator==(const Card &other) const;
+
 private:
-    std::string bank_name_;
-    std::string user_name_;
-    uint64_t pin_number_;
+    const std::string bank_name_;
+    const std::string user_name_;
+    const std::string pin_number_;
     std::unordered_map<std::string, std::shared_ptr<Account>> accounts_;
 };
 }  // namespace BearATM
