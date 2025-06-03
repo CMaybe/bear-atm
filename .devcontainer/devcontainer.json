@@ -14,7 +14,7 @@
 		"source=/home/${localEnv:USER}/.ssh/,target=/home/.ssh/,type=bind"
 	],
 	"workspaceFolder": "/home/${localEnv:USER}/bear-atm",
-	"workspaceMount": "source=${localWorkspaceFolder},target=/home/bear-atm,type=bind",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/home/${localEnv:USER}/bear-atm,type=bind",
 	"runArgs": [
 		"--name",
 		"dev-bear-atm",
