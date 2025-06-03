@@ -2,12 +2,12 @@ name: Testing
 
 on:
   push:
-    branches: ["develop/**", "feature/ci"]
+    branches: ["develop", "feature/ci"]
     paths: 
       - "bear_atm/**"
       - ".github/workflows/ci.yaml"
   pull_request:
-    branches: ["main"]
+    branches: ["main", "develop"]
     paths: 
       - "bear_atm/**"
       - ".github/workflows/ci.yaml"
